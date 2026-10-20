@@ -1,0 +1,16 @@
+[Unit]
+Description=Resolve Smart Medicine USB microphone and speaker roles
+After=graphical-session.target pipewire.service wireplumber.service
+Wants=graphical-session.target pipewire.service wireplumber.service
+
+[Service]
+Type=simple
+EnvironmentFile=%h/.config/smart-medicine-k1/platform.env
+Environment=XDG_RUNTIME_DIR=%t
+Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=%t/bus
+ExecStart=/usr/bin/python3 ${PROJECT_ROOT}/backend/audio/audio_role_manager.py --watch --interval 2
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=default.target

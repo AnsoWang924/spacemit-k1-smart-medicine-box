@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "roles": {
+    "microphone": {
+      "vendor_id": "08bb",
+      "product_id": "2902",
+      "require_capture": true
+    },
+    "speaker": {
+      "vendor_id": "4c4a",
+      "product_id": "4155",
+      "require_playback": true,
+      "pipewire_sink_match": "USB_Composite_Device"
+    }
+  }
+}

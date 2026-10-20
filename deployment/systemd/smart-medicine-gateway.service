@@ -1,0 +1,17 @@
+[Unit]
+Description=Smart Medicine API Gateway and resident vision supervisor
+After=network.target smart-medicine-usb-audio.service smart-medicine-llm.service smart-medicine-qa.service
+Wants=smart-medicine-usb-audio.service smart-medicine-llm.service smart-medicine-qa.service
+
+[Service]
+Type=simple
+EnvironmentFile=%h/.config/smart-medicine-k1/platform.env
+CPUAffinity=4 5 6 7
+ExecStart=/usr/bin/python3 -X utf8 ${PROJECT_ROOT}/backend/gateway/gateway_8799_v2.py --host 127.0.0.1 --port 8799 --ui-root ${PROJECT_ROOT}/frontend
+Restart=on-failure
+RestartSec=3
+TimeoutStopSec=15
+KillMode=control-group
+
+[Install]
+WantedBy=default.target

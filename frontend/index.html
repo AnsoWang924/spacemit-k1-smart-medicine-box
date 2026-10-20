@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>智护药盒 UI v2</title>
+    <link rel="stylesheet" href="./styles.css?v=20260807-alert-toolbar-v1" />
+  </head>
+  <body>
+    <main class="device">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">药</div>
+          <div>
+            <strong>智护药盒</strong>
+            <span id="brandSub">开机首页</span>
+          </div>
+        </div>
+        <nav class="nav" aria-label="主导航">
+          <button class="active" data-page="home" type="button">开机首页</button>
+          <button data-page="members" type="button">成员管理</button>
+          <button data-page="plan" type="button">服药方案</button>
+          <button data-page="cabinet" type="button">药柜管理</button>
+          <button data-page="assistant" type="button">智能用药助手</button>
+          <button data-page="reports" type="button">记录报告</button>
+          <button data-page="k1" type="button">K1 状态</button>
+          <button class="nav-settings" data-page="settings" type="button">设置</button>
+        </nav>
+      </aside>
+
+      <section class="main">
+        <header class="topbar">
+          <div class="title-zone">
+            <div class="title-copy">
+              <h1 id="pageTitle">开机首页</h1>
+              <p id="pageSub" class="subtitle">下一次用药提醒与家庭成员状态</p>
+            </div>
+            <div id="homeVoiceToneSlot" class="home-title-voice-slot" hidden></div>
+          </div>
+          <div class="save-exit-box cpu-status-box">
+            <div class="cpu-status-card" id="cpuStatus" role="status" aria-label="CPU 占用率正在读取">
+              <div class="cpu-reference-chip" aria-hidden="true">
+                <span class="cpu-reference-core"><b>9</b><small>th</small></span>
+              </div>
+              <div class="cpu-reference-copy">
+                <div class="cpu-reference-head"><strong>CPU</strong><b id="cpuUsageValue">--%</b></div>
+                <div class="cpu-reference-meta"><span id="cpuCoreCount"></span><i id="cpuStatusDot" aria-hidden="true" hidden></i><small id="cpuStatusText">正在读取</small></div>
+              </div>
+            </div>
+          </div>
+          <div class="clock-box">
+            <span class="clock-label-spacer" aria-hidden="true"></span>
+            <strong id="clock">13:28</strong>
+            <em id="dateText">7月1日 周三</em>
+          </div>
+        </header>
+
+        <div class="content">
+          <section id="page-home" class="page active">
+            <div class="home-grid">
+              <article class="next-panel">
+                <span class="eyebrow">下一次服药</span>
+                <h2><span id="homeMember">王叔叔</span>，晚饭后该服药了</h2>
+                <p>本轮共 3 种药，系统会先显示闹钟提醒，再做人脸核验和逐药取药监督。</p>
+                <div class="home-actions">
+                  <button class="primary" id="openAlarm" type="button">模拟到点提醒</button>
+                  <button class="secondary" data-page-jump="members" type="button">查看成员</button>
+                </div>
+              </article>
+              <article class="voice-card" hidden></article>
+              <article class="today-card">
+                <h3>今日进度</h3>
+                <div class="today-progress">
+                  <div class="ring"><span>3/4</span></div>
+                  <div class="dose-checklist">
+                    <div class="done"><strong>已完成</strong><span>08:00 早餐后</span></div>
+                    <div class="done"><strong>已完成</strong><span>12:30 午饭后</span></div>
+                    <div class="done"><strong>已完成</strong><span>16:00 外用喷雾</span></div>
+                    <div class="todo"><strong>待完成</strong><span>18:30 晚饭后</span></div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+
+          <section id="page-today-status" class="page">
+            <div class="today-status-board"></div>
+          </section>
+          <section id="page-members" class="page">
+            <div class="toolbar">
+              <div>
+                <p>信息会先保存到本机浏览器，后续可替换为数据库接口。</p>
+              </div>
+              <button class="primary" id="addMember" type="button">+ 新增成员</button>
+            </div>
+            <div id="memberList" class="member-list"></div>
+            <div class="touch-scroll-controls touch-scroll-rail" aria-label="成员列表翻页">
+              <button class="touch-scroll-arrow" type="button" data-scroll-target="#memberList" data-scroll-step="-1" aria-label="向上翻页" title="向上翻页">&#9650;</button>
+              <span class="touch-scroll-track" aria-hidden="true"><i></i></span>
+              <button class="touch-scroll-arrow" type="button" data-scroll-target="#memberList" data-scroll-step="1" aria-label="向下翻页" title="向下翻页">&#9660;</button>
+            </div>
+          </section>
+
+          <section id="page-member-form" class="page">
+            <div class="form-head">
+              <div>
+                <h2 id="formTitle">新增成员</h2>
+                <p>请填写成员信息，并手动新增药品。</p>
+              </div>
+              <div class="form-actions">
+                <button class="soft" id="fillDemoMember" type="button">模拟</button>
+                <button class="ghost" id="cancelForm" type="button">取消</button>
+                <button class="primary" id="saveMember" type="button">保存</button>
+              </div>
+            </div>
+            <div class="form-scroll">
+              <section class="section">
+                <h3>基本信息</h3>
+                <div class="field-grid basic-grid">
+                  <label>姓名<input id="memberName" data-required="姓名" /></label>
+                  <label>性别<select id="memberGender"><option>女</option><option>男</option></select></label>
+                  <label>年龄<input id="memberAge" data-required="年龄" inputmode="numeric" /></label>
+                  <label>患病名称<input id="memberDisease" data-required="患病名称" /></label>
+                </div>
+              </section>
+              <section class="section schedule-section">
+                <h3>作息时间</h3>
+                <div class="field-grid time-grid">
+                  <label>起床<input id="wakeTime" type="time" value="07:00" /></label>
+                  <label>早餐<input id="breakfastTime" type="time" value="08:00" /></label>
+                  <label>午餐<input id="lunchTime" type="time" value="12:30" /></label>
+                  <label>晚餐<input id="dinnerTime" type="time" value="18:30" /></label>
+                  <label>睡觉<input id="sleepTime" type="time" value="21:30" /></label>
+                </div>
+              </section>
+              <section class="section medicine-section">
+                <div class="section-row medicine-section-head">
+                  <div class="medicine-heading-copy">
+                    <h3>药品信息</h3>
+                  </div>
+                  <div class="inline-actions">
+                    <span id="prescriptionOcrStatus" class="ocr-status" role="status" aria-live="polite">药单识别待命</span>
+                    <button class="secondary" id="prescriptionOcrStart" type="button">药单ocr识别</button>
+                    <button class="soft" id="addMed" type="button">+ 新增药品</button>
+                  </div>
+                </div>
+                <div id="prescriptionOcrReview" class="prescription-ocr-review" aria-live="polite" hidden></div>
+                <div id="medicineList" class="medicine-list"></div>
+              </section>
+              <section class="section">
+                <h3>安全验证</h3>
+                <div class="security-grid">
+                  <p>填写姓名后即可通过 K1 摄像头录入人脸；人脸录入与成员资料保存相互独立。</p>
+                  <div class="security-actions">
+                    <button class="soft" id="faceEnrollBackend" type="button">开始录入</button>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="touch-scroll-controls touch-scroll-rail" aria-label="成员信息翻页">
+              <button class="touch-scroll-arrow" type="button" data-scroll-target=".form-scroll" data-scroll-step="-1" aria-label="向上翻页" title="向上翻页">&#9650;</button>
+              <span class="touch-scroll-track" aria-hidden="true"><i></i></span>
+              <button class="touch-scroll-arrow" type="button" data-scroll-target=".form-scroll" data-scroll-step="1" aria-label="向下翻页" title="向下翻页">&#9660;</button>
+            </div>
+          </section>
+
+          <section id="page-plan" class="page">
+            <div class="two-col">
+              <article class="panel">
+                <div id="planList" class="timeline"></div>
+              </article>
+            </div>
+          </section>
+
+          <section id="page-adherence" class="page">
+            <div class="adherence-board">
+              <div class="adherence-toolbar">
+                <button class="ghost adherence-back" data-page-jump="home" type="button">返回</button>
+                <strong>患者每日服药情况</strong>
+                <div id="adherenceTabs" class="adherence-tabs"></div>
+              </div>
+              <div id="adherenceChart" class="adherence-chart"></div>
+            </div>
+          </section>
+
+          <section id="page-cabinet" class="page">
+            <div class="toolbar">
+              <div>
+                <h2>药柜管理</h2>
+              </div>
+              <button class="primary hidden-guide-entry" id="startLoadGuide" type="button" aria-hidden="true" tabindex="-1">开始放药引导</button>
+            </div>
+            <div id="cabinetGrid" class="cabinet-grid"></div>
+          </section>
+
+          <section id="page-assistant" class="page">
+            <button class="assistant-clear" id="assistantClear" type="button">清空</button>
+            <div id="assistantMode" class="assistant-modes assistant-unified">
+              <div class="assistant-tabs">
+                <button class="mode-card selected" data-assistant="quick" type="button"><strong>快速</strong><span>适用于大部分情况</span></button>
+                <button class="mode-card" data-assistant="member" type="button"><strong>成员答疑</strong><span>选择患者精准答疑</span></button>
+              </div>
+              <div id="patientSelector" class="patient-selector"></div>
+              <div class="assistant-compose">
+                <button class="round-action" id="assistantVoice" type="button">语音</button>
+                <input id="assistantQuickInput" placeholder="输入想咨询的问题" />
+                <button class="assistant-photo" id="assistantPhoto" type="button">拍照</button>
+                <button class="round-action" id="assistantMore" type="button">发送</button>
+              </div>
+            </div>
+            <div id="assistantChat" class="assistant-chat" hidden>
+              <div class="chat-head">
+                <strong id="chatTitle">成员用药答疑</strong>
+              </div>
+              <div id="chatMessages" class="chat-messages"></div>
+              <div class="chat-input">
+                <button class="voice-btn" id="voiceBtn" type="button">语音</button>
+                <input id="chatInput" placeholder="输入想咨询的问题" />
+                <button class="assistant-photo" id="chatPhoto" type="button">拍照</button>
+                <button class="primary" id="sendChat" type="button">发送</button>
+              </div>
+            </div>
+            <div class="touch-scroll-controls touch-scroll-rail" aria-label="聊天记录翻页">
+              <button class="touch-scroll-arrow" type="button" data-scroll-target="#chatMessages" data-scroll-step="-1" aria-label="向上翻页" title="向上翻页">&#9650;</button>
+              <span class="touch-scroll-track" aria-hidden="true"><i></i></span>
+              <button class="touch-scroll-arrow" type="button" data-scroll-target="#chatMessages" data-scroll-step="1" aria-label="向下翻页" title="向下翻页">&#9660;</button>
+            </div>
+          </section>
+
+          <section id="page-reports" class="page">
+            <div class="report-list"></div>
+          </section>
+
+          <section id="page-settings" class="page">
+            <section class="settings-panel settings-volume-panel" aria-labelledby="settingsVoiceVolumeTitle">
+              <div>
+                <span class="eyebrow">药柜播报</span>
+                <h2 id="settingsVoiceVolumeTitle">药柜播报音量</h2>
+              </div>
+              <div class="cabinet-voice-volume-control">
+                <label for="cabinetVoiceVolume">音量 <output id="cabinetVoiceVolumeValue" for="cabinetVoiceVolume">100%</output></label>
+                <input id="cabinetVoiceVolume" type="range" min="0" max="100" step="1" value="100" aria-label="药柜播报音量" />
+              </div>
+            </section>
+            <section class="settings-panel" aria-labelledby="settingsResetTitle">
+              <div>
+                <span class="eyebrow">比赛准备</span>
+                <h2 id="settingsResetTitle">重置比赛测试状态</h2>
+                <p>删除王爷爷的成员档案与服药方案，并清除取药、放药、药柜管理、人脸录入和相关记录。</p>
+              </div>
+              <button class="danger settings-reset-button" id="resetAllMemberProgress" type="button">重置全部测试状态</button>
+            </section>
+          </section>
+
+          <section id="page-k1" class="page">
+            <div class="k1-grid">
+              <article data-k1-health="gateway"><span>网关进程</span><strong>等待读取</strong></article>
+              <article data-k1-health="asr"><span>语音识别</span><strong>等待读取</strong></article>
+              <article data-k1-health="qa"><span>用药问答</span><strong>等待读取</strong></article>
+              <article data-k1-health="llm"><span>本地模型</span><strong>等待读取</strong></article>
+              <article data-k1-health="medicineBox"><span>药盒 OCR</span><strong>等待读取</strong></article>
+              <article data-k1-health="face"><span>人脸识别</span><strong>等待读取</strong></article>
+              <article data-k1-health="yolo"><span>药丸识别（YOLO）</span><strong>等待读取</strong></article>
+              <article data-k1-health="prescriptionOcr"><span>药单 OCR</span><strong>等待读取</strong></article>
+            </div>
+          </section>
+
+          <section id="page-alarm" class="page flow-page">
+            <div class="flow-nav">
+              <button class="ghost" data-page-back type="button">&#19978;&#19968;&#39029;</button>
+              <button class="ghost" data-page-jump="home" type="button">&#36820;&#22238;</button>
+            </div>
+            <article class="alarm-card">
+              <span>服药闹钟</span>
+              <h2>王叔叔，该服药了</h2>
+              <p>晚饭后 · 3 种药 · 请来到药盒前</p>
+              <div class="pulse"></div>
+              <button class="primary huge" id="startDose" type="button">开始服药</button>
+              <button class="ghost" data-page-jump="home" type="button">本次不服药</button>
+            </article>
+          </section>
+          <section id="page-face" class="page flow-page">
+            <div class="flow-nav">
+              <button class="ghost" data-page-back type="button">&#19978;&#19968;&#39029;</button>
+              <button class="ghost" data-page-jump="home" type="button">&#36820;&#22238;</button>
+            </div>
+            <div class="verify-layout">
+              <div class="camera-box"><span>&#20154;&#33080;&#26680;&#39564;&#39044;&#35272;</span></div>
+              <article class="panel">
+                <h2>&#20154;&#33080;&#26680;&#39564;</h2>
+                <p>&#23558;&#25353;&#24403;&#21069;&#21462;&#33647;&#25104;&#21592;&#30340;&#20154;&#33080;&#24211;&#36827;&#34892;&#26680;&#39564;&#12290;</p>
+                <div class="face-action-row">
+                  <button class="primary huge" id="faceBackend" type="button">&#24320;&#22987;&#26680;&#39564;</button>
+                  <button class="ghost huge face-panel-return" data-page-jump="home" type="button">&#36820;&#22238;</button>
+                  <button class="soft huge" id="faceSimulateVerify" type="button">&#27169;&#25311;&#26680;&#39564;</button>
+                  <span class="face-recognition-status" id="faceRecognitionStatus" data-state="idle">&#26242;&#26410;&#24320;&#21551;&#35782;&#21035;</span>
+                </div>
+              </article>
+            </div>
+          </section>
+          <section id="page-med-confirm" class="page flow-page">
+            <div class="flow-nav">
+              <button class="ghost" data-page-back type="button">&#19978;&#19968;&#39029;</button>
+              <button class="ghost" data-page-jump="home" type="button">&#36820;&#22238;</button>
+            </div>
+            <div class="med-confirm-layout">
+              <article class="med-confirm-panel">
+                <span class="eyebrow">服药前确认</span>
+                <h2>确认药物</h2>
+                <p id="confirmVoiceText">请您确认本次药物名称及其数量</p>
+                <div class="confirm-table-wrap">
+                  <table class="confirm-med-table">
+                    <thead>
+                      <tr><th colspan="2">本次服用药物清单</th></tr>
+                      <tr class="confirm-column-head"><th>药物名称</th><th>数量</th></tr>
+                    </thead>
+                    <tbody id="confirmMedRows">
+                      <tr><td>阿司匹林</td><td>3粒</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="confirm-continue" id="confirmMedication" role="button" tabindex="0">&#32487;&#32493;</div>
+              </article>
+            </div>
+          </section>
+
+          <section id="page-take" class="page flow-page">
+            <div class="flow-nav">
+              <button class="ghost" data-page-back type="button">&#19978;&#19968;&#39029;</button>
+              <button class="ghost" data-page-jump="home" type="button">&#36820;&#22238;</button>
+            </div>
+            <div class="take-layout">
+              <article class="panel">
+                <h2 id="takeDrug">阿司匹林 3 粒</h2>
+                <p id="takeHint">请从 1 号药柜取出 3 粒，放到识别区核验。</p>
+                <p id="takePhase" class="take-phase" role="status">准备识别模块和药柜状态</p>
+                <div class="ocr-recognition-panel">
+                  <p id="ocrScanText">请将药物放入识别框，系统将自动识别数量。</p>
+                  <div class="ocr-recognition-frame" aria-label="OCR药物识别区域">
+                    <span id="ocrDetectedVisual">等待识别</span>
+                  </div>
+                  <div class="ocr-action-row">
+                    <button class="primary" id="runPillCountRecognition" type="button">开始识别</button>
+                    <button class="soft wang-grandpa-simulation" id="simulateTakeOpen" type="button" hidden>模拟开柜</button>
+                    <button class="soft" id="simulatePillCount" type="button">模拟识别</button>
+                    <button class="soft wang-grandpa-simulation" id="simulateTakeClearance" type="button" hidden>模拟取走并关柜</button>
+                  </div>
+                </div>
+              </article>
+              <article class="panel">
+                <h2>识别区</h2>
+                <table class="recognition-table">
+                  <tbody>
+                    <tr><th>取药进度</th><td id="takeProgressText">-</td></tr>
+                    <tr><th>柜门状态</th><td id="takeDoorState">等待播报</td></tr>
+                    <tr><th>目标数量</th><td id="targetCount">-</td></tr>
+                    <tr><th>识别数量</th><td id="detectedCount">等待识别</td></tr>
+                    <tr><th>识别结果</th><td id="recognitionResult">请按语音提示放入识别区</td></tr>
+                  </tbody>
+                </table>
+                <button class="soft" id="refreshDoorState" type="button">刷新柜门状态</button>
+                <button class="ghost wang-grandpa-simulation" data-wang-grandpa-restart type="button" hidden>重新开始本轮</button>
+                <p id="takeState">需要同时满足：识别数量正确 + 柜门已关闭，才能处理下一种药。</p>
+              </article>
+            </div>
+          </section>
+
+          <section id="page-load-guide" class="page flow-page">
+            <div class="flow-nav">
+              <button class="ghost" data-page-back type="button">&#19978;&#19968;&#39029;</button>
+              <button class="ghost" data-page-jump="home" type="button">&#36820;&#22238;</button>
+            </div>
+            <div class="load-guide">
+              <article>
+                <h2 id="loadStepTitle">1. 选择药品</h2>
+                <p id="loadStepText">系统建议把头孢克肟颗粒放入 1 号药柜。</p>
+                <button class="primary" id="nextLoadStep" type="button">开始识别</button>
+                <button class="soft wang-grandpa-simulation" id="simulateLoadVerification" type="button" hidden>模拟核验</button>
+              </article>
+              <article class="load-tech-panel">
+                <div class="tech-ring">
+                  <strong id="drawerNumber">1号柜</strong>
+                  <span id="drawerStatus">等待弹出</span>
+                </div>
+                <div class="load-progress">
+                  <div><span>&#25918;&#33647;&#36827;&#24230;</span><b id="loadProgressText">1/1</b></div>
+                  <div class="load-progress-bar"><i id="loadProgressFill"></i></div>
+                </div>
+                <div class="tech-metrics load-door-state">
+                  <span>&#26588;&#38376;&#29366;&#24577;</span><b id="loadDoorState">&#25171;&#24320;</b>
+                </div>
+              </article>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <div id="toast" class="toast"></div>
+      <section id="touchKeyboard" class="touch-keyboard" aria-label="触控键盘">
+        <div class="keyboard-head">
+          <strong id="keyboardTitle">触控输入</strong>
+          <span id="keyboardPreview"></span>
+          <button id="keyboardSize" class="soft" type="button">放大</button>
+          <div class="keyboard-zoom">
+            <button id="keyboardZoomOut" class="ghost" type="button">-</button>
+            <span id="keyboardZoomText">100%</span>
+            <button id="keyboardZoomIn" class="ghost" type="button">+</button>
+          </div>
+          <button id="keyboardClose" class="ghost" type="button">完成</button>
+        </div>
+        <div id="keyboardModes" class="keyboard-modes">
+          <button class="active" data-mode="pinyin" type="button">拼音</button>
+          <button data-mode="abc" type="button">英文</button>
+          <button data-mode="number" type="button">数字</button>
+          <button data-mode="symbol" type="button">符号</button>
+          <button data-mode="quick" type="button">常用</button>
+        </div>
+        <div id="keyboardQuick" class="keyboard-quick"></div>
+        <div id="keyboardKeys" class="keyboard-keys"></div>
+      </section>
+    </main>
+    <script src="./static-voice.js?v=20260805-fusion-repair-v1"></script>
+    <script src="./app.js?v=20260805-take-flow-v2"></script>
+  </body>
+</html>
+
+

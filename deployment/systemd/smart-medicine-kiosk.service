@@ -1,0 +1,17 @@
+[Unit]
+Description=Smart Medicine kiosk browser
+After=graphical-session.target smart-medicine-gateway.service
+Wants=smart-medicine-gateway.service
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+EnvironmentFile=%h/.config/smart-medicine-k1/platform.env
+EnvironmentFile=-%h/.config/smart-medicine-k1/kiosk.env
+ExecStart=/usr/bin/bash ${PROJECT_ROOT}/deployment/start-kiosk.sh
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=10
+
+[Install]
+WantedBy=graphical-session.target

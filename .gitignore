@@ -1,0 +1,23 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+*.log
+*.tmp
+*.bak
+*.orig
+logs/
+
+# Runtime data. Face embeddings and recordings are private user data.
+/data/faces/*
+!/data/faces/.gitkeep
+!/data/faces/README.md
+/data/recordings/
+/data/captures/
+

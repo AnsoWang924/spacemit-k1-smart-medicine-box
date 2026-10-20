@@ -1,0 +1,4 @@
+# Bianbu/K1 优先复用系统已有的 PyTorch、sentence-transformers 和 SpaceMIT llama.cpp 包。
+# 仅在当前 Python 环境缺包时安装下面的架构无关依赖；不要用 pip 覆盖板端优化版运行时。
+numpy>=1.24,<3
+requests>=2.31,<3

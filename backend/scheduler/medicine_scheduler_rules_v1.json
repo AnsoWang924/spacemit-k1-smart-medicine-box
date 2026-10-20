@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "description": "比赛演示用服药方案调度规则库。剂量和每日次数必须来自成员原始处方；本库只定义名称标准化、时段偏好和药物关系。",
+  "canonical_catalog_source": {
+    "expected_count": 17,
+    "source_file": "backend/medicine_box_recognition/models/medicine_name_database_17.json"
+  },
+  "slots": [
+    {"id": "wake", "label": "起床后", "schedule_field": "wake", "offset_minutes": 10, "tie_break_order": 1},
+    {"id": "breakfast", "label": "早餐后", "schedule_field": "breakfast", "offset_minutes": 10, "tie_break_order": 2},
+    {"id": "lunch", "label": "午餐后", "schedule_field": "lunch", "offset_minutes": 10, "tie_break_order": 3},
+    {"id": "dinner", "label": "晚餐后", "schedule_field": "dinner", "offset_minutes": 10, "tie_break_order": 4},
+    {"id": "bedtime", "label": "睡觉前", "schedule_field": "sleep", "offset_minutes": -10, "tie_break_order": 5}
+  ],
+  "catalog": [
+    {"drug_id": "sanjin_xiguashuang", "canonical_name": "三金西瓜霜", "spoken_name": "三金西瓜霜", "aliases": ["西瓜霜"], "scheduler_status": "unconfigured"},
+    {"drug_id": "renshen_jianpi_tablet", "canonical_name": "人参健脾片", "spoken_name": "人参健脾片", "aliases": ["人参健脾"], "scheduler_status": "configured"},
+    {"drug_id": "oral_rehydration_salts_iii", "canonical_name": "口服补液盐散（III）", "spoken_name": "口服补液盐散", "aliases": ["口服补液盐散", "口服补液盐散三", "口服补液盐散III", "口服补液盐散Ⅲ", "补液盐", "ORS"], "scheduler_status": "configured"},
+    {"drug_id": "compound_vitamin_b_tablet", "canonical_name": "复合维生素B片", "spoken_name": "复合维生素B片", "aliases": ["复合维生素B", "维生素B", "维B", "复合维B"], "scheduler_status": "configured"},
+    {"drug_id": "compound_ganmaoling_granule", "canonical_name": "复方感冒灵颗粒", "spoken_name": "复方感冒灵颗粒", "aliases": ["复方感冒灵", "感冒灵颗粒"], "scheduler_status": "unconfigured"},
+    {"drug_id": "compound_jinyinhua_granule", "canonical_name": "复方金银花颗粒", "spoken_name": "复方金银花颗粒", "aliases": ["复方金银花", "金银花颗粒"], "scheduler_status": "unconfigured"},
+    {"drug_id": "montelukast_sodium_tablet", "canonical_name": "孟鲁司特钠片", "spoken_name": "孟鲁司特钠片", "aliases": ["孟鲁司特", "孟鲁司特钠"], "scheduler_status": "unconfigured"},
+    {"drug_id": "xiaochaihu_granule", "canonical_name": "小柴胡颗粒", "spoken_name": "小柴胡颗粒", "aliases": ["小柴胡", "小柴胡冲剂"], "scheduler_status": "configured"},
+    {"drug_id": "amoxicillin_capsule", "canonical_name": "阿莫西林胶囊", "spoken_name": "阿莫西林", "aliases": ["阿莫西林", "阿莫西林片", "阿莫仙"], "scheduler_status": "configured"},
+    {"drug_id": "compound_paracetamol_amantadine_capsule", "canonical_name": "复方氨酚烷胺胶囊", "spoken_name": "复方氨酚烷胺胶囊", "aliases": ["复方氨酚烷胺", "氨酚烷胺"], "scheduler_status": "unconfigured"},
+    {"drug_id": "amlodipine_tablet", "canonical_name": "氨氯地平片", "spoken_name": "氨氯地平片", "aliases": ["氨氯地平", "苯磺酸氨氯地平"], "scheduler_status": "unconfigured"},
+    {"drug_id": "bifidobacterium_triple_capsule", "canonical_name": "双歧杆菌三联活菌胶囊", "spoken_name": "双歧杆菌三联活菌胶囊", "aliases": ["双歧杆菌", "益生菌", "三联活菌"], "scheduler_status": "unconfigured"},
+    {"drug_id": "montmorillonite_powder", "canonical_name": "蒙脱石散", "spoken_name": "蒙脱石散", "aliases": ["蒙脱石", "思密达"], "scheduler_status": "configured"},
+    {"drug_id": "doxycycline_hyclate_tablet", "canonical_name": "盐酸多西环素片", "spoken_name": "盐酸多西环素片", "aliases": ["盐酸多西环素", "多西环素"], "scheduler_status": "configured"},
+    {"drug_id": "cetirizine_hydrochloride_tablet", "canonical_name": "盐酸西替利嗪片", "spoken_name": "盐酸西替利嗪片", "aliases": ["盐酸西替利嗪", "西替利嗪"], "scheduler_status": "configured"},
+    {"drug_id": "vitamin_d_drops", "canonical_name": "维生素D滴剂", "spoken_name": "维生素D滴剂", "aliases": ["维生素D", "维D", "维生素D3滴剂"], "scheduler_status": "configured"},
+    {"drug_id": "jinyinhua_oral_liquid", "canonical_name": "金银花口服液", "spoken_name": "金银花口服液", "aliases": ["金银花口服液"], "scheduler_status": "unconfigured"}
+  ],
+  "drug_rules": [
+    {"drug_id": "doxycycline_hyclate_tablet", "allowed_slots": ["breakfast", "lunch", "dinner"], "preferred_slots": ["breakfast", "dinner"], "same_drug_min_gap_minutes": null, "rule_scope": "demo_scheduler"},
+    {"drug_id": "oral_rehydration_salts_iii", "allowed_slots": ["breakfast", "lunch", "dinner"], "preferred_slots": ["lunch"], "same_drug_min_gap_minutes": null, "rule_scope": "demo_scheduler"},
+    {"drug_id": "montmorillonite_powder", "allowed_slots": ["breakfast", "lunch", "dinner", "bedtime"], "same_drug_min_gap_minutes": null, "rule_scope": "demo_scheduler"},
+    {"drug_id": "amoxicillin_capsule", "allowed_slots": ["breakfast", "lunch", "dinner"], "preferred_slots": ["breakfast", "dinner"], "same_drug_min_gap_minutes": null, "rule_scope": "demo_scheduler"},
+    {"drug_id": "vitamin_d_drops", "allowed_slots": ["breakfast", "lunch", "dinner"], "preferred_slots": ["breakfast"], "same_drug_min_gap_minutes": null, "rule_scope": "demo_scheduler"},
+    {"drug_id": "renshen_jianpi_tablet", "allowed_slots": ["breakfast", "lunch", "dinner"], "preferred_slots": ["lunch"], "same_drug_min_gap_minutes": null, "rule_scope": "demo_scheduler"},
+    {"drug_id": "xiaochaihu_granule", "allowed_slots": ["breakfast", "lunch", "dinner"], "same_drug_min_gap_minutes": null, "rule_scope": "demo_scheduler"},
+    {"drug_id": "compound_vitamin_b_tablet", "allowed_slots": ["breakfast", "lunch", "dinner"], "same_drug_min_gap_minutes": null, "rule_scope": "demo_scheduler"},
+    {"drug_id": "cetirizine_hydrochloride_tablet", "allowed_slots": ["dinner", "bedtime"], "preferred_slots": ["bedtime"], "same_drug_min_gap_minutes": null, "rule_source": "比赛演示排程偏好：睡觉前优先；并非产品说明书的唯一限定时段", "rule_scope": "demo_scheduler"}
+  ],
+  "pair_rules": [
+    {"rule_id": "montmorillonite_separate_doxycycline", "drug_a": "montmorillonite_powder", "drug_b": "doxycycline_hyclate_tablet", "same_slot_policy": "forbid", "min_separation_minutes": null, "strength": "hard", "explanation_owner": "montmorillonite_powder", "reason_code": "separated_from_other_drug", "rule_scope": "demo_scheduler"},
+    {"rule_id": "montmorillonite_separate_ors", "drug_a": "montmorillonite_powder", "drug_b": "oral_rehydration_salts_iii", "same_slot_policy": "forbid", "min_separation_minutes": null, "strength": "hard", "explanation_owner": "montmorillonite_powder", "reason_code": "separated_from_other_drug", "rule_scope": "demo_scheduler"},
+    {"rule_id": "amoxicillin_vitamin_d_prefer_merge", "drug_a": "amoxicillin_capsule", "drug_b": "vitamin_d_drops", "same_slot_policy": "prefer", "min_separation_minutes": null, "strength": "soft", "explanation_owner": "vitamin_d_drops", "reason_code": "merged_with_other_drug", "rule_scope": "demo_scheduler"},
+    {"rule_id": "xiaochaihu_vitamin_b_prefer_merge", "drug_a": "xiaochaihu_granule", "drug_b": "compound_vitamin_b_tablet", "same_slot_policy": "prefer", "min_separation_minutes": null, "strength": "soft", "explanation_owner": "compound_vitamin_b_tablet", "reason_code": "merged_with_other_drug", "rule_scope": "demo_scheduler"}
+  ],
+  "scoring": {"same_drug_spacing_weight": 1, "preferred_slot_weight": 100, "prefer_merge_weight": 20, "prefer_unused_slot_weight": 10, "deterministic_tie_break": "slot_order_then_drug_id"}
+}

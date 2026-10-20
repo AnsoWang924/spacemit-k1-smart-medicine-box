@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "description": "K1 Smart Medicine default local LLM profile.",
+  "default_profile": "qwen3_0_6b_q40",
+  "server_binary": "/usr/bin/llama-server",
+  "host": "127.0.0.1",
+  "port": 8080,
+  "profiles": {
+    "qwen3_0_6b_q40": {
+      "backend": "llama_cpp_chat",
+      "display_name": "Qwen3-0.6B Q4_0",
+      "model_alias": "qwen3-0.6b-q40",
+      "model_path": "../../models/llm/Qwen3-0.6B-Q4_0.gguf",
+      "expected_size_bytes": 382156480,
+      "sha256": "33bcc57074ec7b6eada5a90651ee546ec0c2b271002c22baf9f1b2dd1e8f75cb",
+      "threads": null,
+      "ctx_size": 512,
+      "batch_size": 128,
+      "ubatch_size": 128,
+      "parallel": 1,
+      "extra_args": ["--metrics", "--no-mmap"],
+      "optional_options": {"--reasoning": "off", "--reasoning-budget": "0"}
+    }
+  }
+}

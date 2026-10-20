@@ -1,0 +1,16 @@
+[Unit]
+Description=Smart Medicine QA API
+After=smart-medicine-llm.service
+Wants=smart-medicine-llm.service
+
+[Service]
+Type=simple
+EnvironmentFile=%h/.config/smart-medicine-k1/platform.env
+CPUAffinity=0 1 2 3
+ExecStart=/usr/bin/python3 -X utf8 ${PROJECT_ROOT}/backend/qa/medicine_qa_api.py --host 127.0.0.1 --port 8790 --startup-preload --llm-url http://127.0.0.1:8080/v1/chat/completions
+Restart=on-failure
+RestartSec=3
+TimeoutStopSec=8
+
+[Install]
+WantedBy=default.target

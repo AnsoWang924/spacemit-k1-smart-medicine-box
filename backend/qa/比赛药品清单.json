@@ -1,0 +1,93 @@
+{
+  "schema_version": 2,
+  "description": "比赛演示使用的唯一有效药品清单。运行时只加载 active_drugs；规格、剂量和生产企业以现场药盒说明书为准。",
+  "total_active_drugs": 17,
+  "active_drugs": [
+    {
+      "drug_name": "三金西瓜霜",
+      "card_file": "17_三金西瓜霜.json"
+    },
+    {
+      "drug_name": "人参健脾片",
+      "card_file": "18_人参健脾片.json"
+    },
+    {
+      "drug_name": "口服补液盐散（III）",
+      "card_file": "10_口服补液盐散.json"
+    },
+    {
+      "drug_name": "复合维生素B片",
+      "card_file": "04_复合维生素B片.json"
+    },
+    {
+      "drug_name": "复方感冒灵颗粒",
+      "card_file": "15_复方感冒灵颗粒.json"
+    },
+    {
+      "drug_name": "复方金银花颗粒",
+      "card_file": "05_复方金银花颗粒.json"
+    },
+    {
+      "drug_name": "孟鲁司特钠片",
+      "card_file": "19_孟鲁司特钠片.json"
+    },
+    {
+      "drug_name": "小柴胡颗粒",
+      "card_file": "02_小柴胡颗粒.json"
+    },
+    {
+      "drug_name": "阿莫西林胶囊",
+      "card_file": "07_阿莫西林胶囊.json"
+    },
+    {
+      "drug_name": "复方氨酚烷胺胶囊",
+      "card_file": "13_复方氨酚烷胺胶囊.json"
+    },
+    {
+      "drug_name": "氨氯地平片",
+      "card_file": "08_氨氯地平片.json"
+    },
+    {
+      "drug_name": "双歧杆菌三联活菌胶囊",
+      "card_file": "12_双歧杆菌三联活菌胶囊.json"
+    },
+    {
+      "drug_name": "蒙脱石散",
+      "card_file": "09_蒙脱石散.json"
+    },
+    {
+      "drug_name": "盐酸多西环素片",
+      "card_file": "20_盐酸多西环素片.json"
+    },
+    {
+      "drug_name": "盐酸西替利嗪片",
+      "card_file": "03_盐酸西替利嗪片.json"
+    },
+    {
+      "drug_name": "维生素D滴剂",
+      "card_file": "01_维生素D滴剂.json"
+    },
+    {
+      "drug_name": "金银花口服液",
+      "card_file": "21_金银花口服液.json"
+    }
+  ],
+  "legacy_cards": [
+    {
+      "drug_name": "布洛芬片",
+      "card_file": "06_布洛芬片.json"
+    },
+    {
+      "drug_name": "碳酸钙D3片",
+      "card_file": "11_碳酸钙D3片.json"
+    },
+    {
+      "drug_name": "盐酸左西替利嗪片",
+      "card_file": "14_盐酸左西替利嗪片.json"
+    },
+    {
+      "drug_name": "口腔炎喷雾剂",
+      "card_file": "16_口腔炎喷雾剂.json"
+    }
+  ]
+}

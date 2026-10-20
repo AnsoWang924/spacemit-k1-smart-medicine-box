@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "description": "仅用于“某症状/疾病能否用某药”这类提问的确定性适用范围匹配。每一项均由对应药品知识卡的 what_treat 原文人工复核；空列表表示知识卡不足以支持症状级肯定回答。",
+  "cards": {
+    "三金西瓜霜": {
+      "approved_terms": [
+        {"term": "口腔溃疡", "source_unit": "what_treat", "phrases": ["口腔溃疡", "嘴里溃疡"]},
+        {"term": "口腔、咽喉局部不适", "source_unit": "what_treat", "phrases": ["口腔不适", "口腔局部不适", "咽喉不适", "咽喉局部不适", "喉咙不适", "嗓子不舒服", "咽部不适"]},
+        {"term": "咽喉肿痛", "source_unit": "what_treat", "phrases": ["咽喉肿痛", "喉咙肿痛", "嗓子肿痛"]},
+        {"term": "口舌生疮", "source_unit": "what_treat", "phrases": ["口舌生疮", "嘴里生疮"]},
+        {"term": "牙龈肿痛或出血", "source_unit": "what_treat", "phrases": ["牙龈肿痛", "牙龈出血"]}
+      ]
+    },
+    "人参健脾片": {
+      "approved_terms": [
+        {"term": "脾胃虚弱所致的饮食不化", "source_unit": "what_treat", "phrases": ["脾胃虚弱所致饮食不化", "脾胃虚弱导致饮食不化"]},
+        {"term": "脘闷嘈杂", "source_unit": "what_treat", "phrases": ["脾胃虚弱脘闷嘈杂", "脘闷嘈杂"]},
+        {"term": "恶心呕吐", "source_unit": "what_treat", "phrases": ["脾胃虚弱恶心呕吐", "恶心呕吐"]},
+        {"term": "腹痛便溏", "source_unit": "what_treat", "phrases": ["脾胃虚弱腹痛便溏", "腹痛便溏"]},
+        {"term": "不思饮食", "source_unit": "what_treat", "phrases": ["脾胃虚弱不思饮食", "不思饮食"]},
+        {"term": "体弱倦怠", "source_unit": "what_treat", "phrases": ["脾胃虚弱体弱倦怠", "体弱倦怠"]}
+      ]
+    },
+    "口服补液盐散（III）": {
+      "approved_terms": [
+        {"term": "腹泻", "source_unit": "what_treat", "phrases": ["腹泻", "拉肚子"]},
+        {"term": "呕吐后", "source_unit": "what_treat", "phrases": ["呕吐后", "吐完"]},
+        {"term": "脱水风险", "source_unit": "what_treat", "phrases": ["脱水风险", "担心脱水"]}
+      ]
+    },
+    "复合维生素B片": {
+      "approved_terms": [
+        {"term": "B族维生素缺乏相关的口角炎", "source_unit": "what_treat", "phrases": ["B族维生素缺乏相关口角炎", "维生素B缺乏相关口角炎"]},
+        {"term": "食欲差", "source_unit": "what_treat", "phrases": ["B族维生素缺乏相关食欲差", "维生素B缺乏相关食欲差", "食欲差"]},
+        {"term": "乏力", "source_unit": "what_treat", "phrases": ["B族维生素缺乏相关乏力", "维生素B缺乏相关乏力", "乏力"]}
+      ]
+    },
+    "复方感冒灵颗粒": {
+      "approved_terms": [
+        {"term": "风热感冒", "source_unit": "what_treat", "phrases": ["风热感冒"]},
+        {"term": "发热", "source_unit": "what_treat", "phrases": ["风热感冒发热", "风热感冒发烧", "发热", "发烧"]},
+        {"term": "怕风", "source_unit": "what_treat", "phrases": ["风热感冒怕风", "怕风"]},
+        {"term": "头身痛", "source_unit": "what_treat", "phrases": ["风热感冒头身痛", "头身痛"]},
+        {"term": "口干口渴", "source_unit": "what_treat", "phrases": ["风热感冒口干口渴", "口干口渴"]},
+        {"term": "鼻塞流涕", "source_unit": "what_treat", "phrases": ["风热感冒鼻塞流涕", "鼻塞流涕", "鼻塞", "流涕"]},
+        {"term": "咽痛", "source_unit": "what_treat", "phrases": ["风热感冒咽痛", "咽痛"]},
+        {"term": "咳嗽", "source_unit": "what_treat", "phrases": ["风热感冒咳嗽", "咳嗽"]}
+      ]
+    },
+    "复方金银花颗粒": {
+      "approved_terms": [
+        {"term": "风热感冒", "source_unit": "what_treat", "phrases": ["风热感冒"]},
+        {"term": "咽喉肿痛", "source_unit": "what_treat", "phrases": ["风热感冒咽喉肿痛", "风热感冒喉咙肿痛", "风热感冒嗓子肿痛", "咽喉肿痛", "喉咙肿痛", "嗓子肿痛"]},
+        {"term": "口干口渴", "source_unit": "what_treat", "phrases": ["风热感冒口干口渴", "口干口渴"]}
+      ]
+    },
+    "孟鲁司特钠片": {
+      "approved_terms": [
+        {"term": "哮喘预防和长期控制", "source_unit": "what_treat", "phrases": ["哮喘预防", "哮喘长期控制", "哮喘"]},
+        {"term": "过敏性鼻炎症状缓解", "source_unit": "what_treat", "phrases": ["过敏性鼻炎"]}
+      ]
+    },
+    "小柴胡颗粒": {
+      "approved_terms": [
+        {"term": "一阵冷一阵热", "source_unit": "what_treat", "phrases": ["感冒一阵冷一阵热", "一阵冷一阵热"]},
+        {"term": "口苦咽干", "source_unit": "what_treat", "phrases": ["感冒口苦咽干", "口苦咽干"]},
+        {"term": "食欲差", "source_unit": "what_treat", "phrases": ["感冒食欲差", "食欲差"]}
+      ]
+    },
+    "阿莫西林胶囊": {
+      "approved_terms": [
+        {"term": "细菌感染引起的咽喉炎", "source_unit": "what_treat", "phrases": ["细菌感染引起的咽喉炎", "细菌性咽喉炎", "咽喉炎"]},
+        {"term": "支气管炎等呼吸道感染", "source_unit": "what_treat", "phrases": ["细菌性支气管炎", "细菌性呼吸道感染", "支气管炎"]},
+        {"term": "尿路感染", "source_unit": "what_treat", "phrases": ["尿路感染"]},
+        {"term": "中耳炎", "source_unit": "what_treat", "phrases": ["中耳炎"]},
+        {"term": "扁桃体炎", "source_unit": "what_treat", "phrases": ["扁桃体炎"]}
+      ]
+    },
+    "复方氨酚烷胺胶囊": {
+      "approved_terms": [
+        {"term": "普通感冒或流感样症状", "source_unit": "what_treat", "phrases": ["普通感冒", "感冒", "流感样症状"]},
+        {"term": "发热", "source_unit": "what_treat", "phrases": ["感冒发热", "感冒发烧", "流感样发热", "流感样发烧", "发热", "发烧"]},
+        {"term": "头痛", "source_unit": "what_treat", "phrases": ["感冒头痛", "流感样头痛", "头痛"]},
+        {"term": "鼻塞", "source_unit": "what_treat", "phrases": ["感冒鼻塞", "流感样鼻塞", "鼻塞"]},
+        {"term": "流鼻涕", "source_unit": "what_treat", "phrases": ["感冒流鼻涕", "流感样流鼻涕", "流鼻涕"]},
+        {"term": "打喷嚏", "source_unit": "what_treat", "phrases": ["感冒打喷嚏", "流感样打喷嚏", "打喷嚏"]}
+      ]
+    },
+    "氨氯地平片": {
+      "approved_terms": [
+        {"term": "高血压", "source_unit": "what_treat", "phrases": ["高血压"]},
+        {"term": "部分心绞痛", "source_unit": "what_treat", "phrases": ["心绞痛"]}
+      ]
+    },
+    "双歧杆菌三联活菌胶囊": {
+      "approved_terms": [
+        {"term": "腹泻", "source_unit": "what_treat", "phrases": ["肠道菌群失调腹泻", "菌群失调腹泻", "腹泻", "拉肚子"]},
+        {"term": "便秘", "source_unit": "what_treat", "phrases": ["肠道菌群失调便秘", "菌群失调便秘", "便秘"]},
+        {"term": "消化不良", "source_unit": "what_treat", "phrases": ["肠道菌群失调消化不良", "菌群失调消化不良", "消化不良"]},
+        {"term": "肠道菌群失调", "source_unit": "what_treat", "phrases": ["肠道菌群失调", "菌群失调"]}
+      ]
+    },
+    "蒙脱石散": {
+      "approved_terms": [
+        {"term": "急慢性腹泻", "source_unit": "what_treat", "phrases": ["急性腹泻", "慢性腹泻"]},
+        {"term": "急慢性腹泻", "source_unit": "what_treat", "phrases": ["腹泻", "拉肚子"]}
+      ]
+    },
+    "盐酸多西环素片": {
+      "approved_terms": []
+    },
+    "盐酸西替利嗪片": {
+      "approved_terms": [
+        {"term": "过敏性鼻炎", "source_unit": "what_treat", "phrases": ["过敏性鼻炎"]},
+        {"term": "荨麻疹", "source_unit": "what_treat", "phrases": ["荨麻疹"]},
+        {"term": "皮肤瘙痒", "source_unit": "what_treat", "phrases": ["皮肤瘙痒", "皮肤痒"]}
+      ]
+    },
+    "维生素D滴剂": {
+      "approved_terms": [
+        {"term": "维生素D缺乏", "source_unit": "what_treat", "phrases": ["维生素D缺乏"]},
+        {"term": "儿童佝偻病预防", "source_unit": "what_treat", "phrases": ["儿童佝偻病预防"]},
+        {"term": "骨量不足辅助补充", "source_unit": "what_treat", "phrases": ["骨量不足"]}
+      ]
+    },
+    "金银花口服液": {
+      "approved_terms": []
+    }
+  }
+}

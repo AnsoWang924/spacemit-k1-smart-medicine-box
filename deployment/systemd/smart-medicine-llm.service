@@ -1,0 +1,18 @@
+[Unit]
+Description=Smart Medicine local LLM
+After=network.target
+
+[Service]
+Type=simple
+EnvironmentFile=%h/.config/smart-medicine-k1/platform.env
+Environment=SPACEMIT_DISABLE_TCM=1
+Environment=K1_LLM_THREADS=4
+CPUAffinity=0 1 2 3
+ExecStart=/usr/bin/python3 -X utf8 ${PROJECT_ROOT}/backend/llm/llm_server_launcher.py --config ${PROJECT_ROOT}/backend/llm/model_profiles.json --profile qwen3_0_6b_q40
+Restart=on-failure
+RestartSec=3
+TimeoutStopSec=10
+KillMode=control-group
+
+[Install]
+WantedBy=default.target

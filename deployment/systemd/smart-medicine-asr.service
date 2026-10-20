@@ -1,0 +1,23 @@
+[Unit]
+Description=Smart Medicine SenseVoice ASR API
+After=network.target smart-medicine-usb-audio.service
+Requires=smart-medicine-usb-audio.service
+
+[Service]
+Type=simple
+# SenseVoice raises SIGILL on K1 CPUs 4-7 during real inference.
+CPUAffinity=0 1 2 3
+EnvironmentFile=%h/.config/smart-medicine-k1/platform.env
+Environment=SPACEMIT_ASR_ROOT=/opt/spacemit-asr
+Environment=LD_LIBRARY_PATH=/usr/share/asr-llm-tts/.voice2code/lib/python3.12/site-packages/onnxruntime_genai
+Environment=K1_ASR_THREADS=1
+Environment=K1_ASR_USE_SPACEMIT=0
+Environment=K1_AUDIO_ROLE_STATUS_PATH=%t/smart-medicine-audio-roles.json
+ExecStart=/usr/bin/python3 ${PROJECT_ROOT}/backend/audio/audio_role_manager.py --exec-role microphone -- /usr/share/asr-llm-tts/.voice2code/bin/python -X utf8 ${PROJECT_ROOT}/backend/voice/asr/k1_asr_backend_service.py --host 127.0.0.1 --port 8765 --threads 1 --preload
+Restart=always
+RestartSec=3
+TimeoutStopSec=8
+KillMode=control-group
+
+[Install]
+WantedBy=default.target
